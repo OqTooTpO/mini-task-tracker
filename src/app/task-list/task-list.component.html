@@ -1,0 +1,33 @@
+<div class="task-list-container">
+  <h1>Задачи</h1>
+
+  <div class="filters">
+    <mat-form-field appearance="fill">
+      <mat-label>Статус</mat-label>
+      <mat-select [(value)]="statusFilter">
+        <mat-option value="">Все</mat-option>
+        <mat-option value="open">Открыта</mat-option>
+        <mat-option value="in-progress">В процессе</mat-option>
+        <mat-option value="completed">Завершена</mat-option>
+        <mat-option value="deferred">Отложена</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Сортировать</mat-label>
+      <mat-select [(value)]="sortBy">
+        <mat-option value="deadline">Дедлайн</mat-option>
+        <mat-option value="priority">Приоритет</mat-option>
+        <mat-option value="assignee">Исполнитель</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-list>
+    <mat-list-item *ngFor="let task of filteredTasks()">
+      <h3 mat-line>{{ task.title }} - {{ task.priority }} - {{ task.assignee }}</h3>
+      <p mat-line>{{ task.description }}</p>
+      <p mat-line>{{ task.deadline | date:'shortDate' }}</p>
+    </mat-list-item>
+  </mat-list>
+</div>
